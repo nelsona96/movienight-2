@@ -130,7 +130,7 @@ LOADING
   animation: l1 1s infinite;
 }
 
-.loader--search,
+.loader--search-page,
 .loader--nav {
   top: 3px;
   width: 26px;

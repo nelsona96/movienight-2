@@ -14,10 +14,7 @@ export default function NavBar(props) {
             <h1 className="nav__logo">MovieNight</h1>
           </NavLink>
           {pathname === "/search" && width > 768 && (
-            <SearchInput
-              {...props}
-              variant="nav"
-            />
+            <SearchInput {...props} variant="nav" />
           )}
           <div className="nav__links">
             <NavLink to="/" className="nav__link">

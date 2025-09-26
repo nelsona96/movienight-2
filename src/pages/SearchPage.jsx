@@ -2,6 +2,7 @@ import SearchInput from "../components/ui/SearchInput";
 import MovieCard from "../components/ui/MovieCard/MovieCard";
 import FilterBar from "../components/ui/FilterBar";
 import MovieCardSkeleton from "../components/ui/MovieCard/MovieCardSkeleton";
+import DelayedRender from "../components/DelayedRender";
 
 export default function SearchPage({
   search,
@@ -16,7 +17,12 @@ export default function SearchPage({
     <section id="search">
       <div className="container">
         <div className="search-bar">
-          <SearchInput {...props} variant="searchPage" />
+          <SearchInput
+            {...props}
+            search={search}
+            loading={loading}
+            variant="searchPage"
+          />
         </div>
         {submittedSearch && <FilterBar search={search} />}
         <div className="movies">

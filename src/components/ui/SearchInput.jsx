@@ -5,7 +5,6 @@ export default function SearchInput({
   handleInput,
   searchMovies,
   search,
-  submittedSearch,
   loading,
   variant,
 }) {
@@ -60,6 +59,16 @@ export default function SearchInput({
         }`.trim(),
       });
     }
+
+    return () => {
+      setComponentClass({
+        inputWrapper: "input__wrapper",
+        input: "input",
+        searchIconWrapper: "search-icon__wrapper",
+        searchIcon: "search-icon",
+        loadingIcon: "loader",
+      });
+    };
   }, []);
 
   function sendSearch() {
