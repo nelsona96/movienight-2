@@ -322,6 +322,10 @@ HERO
   color: var(--ui-element);
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
 .search-icon__wrapper {
   display: flex;
   position: absolute;
@@ -570,6 +574,7 @@ MOVIE DETAILS
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding-top: 8px;
 }
 
 .movie-page__row {
@@ -689,6 +694,7 @@ MOVIE DETAILS
 
 .movie__plot {
   font-size: 18px;
+  line-height: 1.4;
   font-weight: 300;
   text-wrap: pretty;
   margin-bottom: 60px;

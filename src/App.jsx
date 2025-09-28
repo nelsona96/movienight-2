@@ -54,12 +54,13 @@ function App() {
         } else {
           setMovies(uniqueMovies?.slice(0, 8));
         }
-        setTimeout(() => {
-          setLoading(false);
-        }, 900);
       }
     } catch {
-      setLoading(false);
+      console.error("ERROR");
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 900);
     }
   }
 

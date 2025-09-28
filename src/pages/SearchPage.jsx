@@ -3,6 +3,7 @@ import MovieCard from "../components/ui/MovieCard/MovieCard";
 import FilterBar from "../components/ui/FilterBar";
 import MovieCardSkeleton from "../components/ui/MovieCard/MovieCardSkeleton";
 import DelayedRender from "../components/DelayedRender";
+import { useEffect, useState } from "react";
 
 export default function SearchPage({
   search,

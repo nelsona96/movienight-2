@@ -84,7 +84,7 @@ export default function SearchInput({
     <div className={componentClass.inputWrapper}>
       <input
         id="search-input"
-        type="text"
+        type="search"
         placeholder="The Lord of the Rings..."
         value={search}
         ref={inputRef}
