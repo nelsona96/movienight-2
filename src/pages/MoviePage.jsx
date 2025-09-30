@@ -10,16 +10,24 @@ export default function MoviePage() {
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function fetchMovie() {
     try {
       const { data } = await axios.get(
         `https://www.omdbapi.com/?apikey=6dbbb021&i=${id}`
       );
+
+      if (data.Error) {
+        console.error(data.Error);
+        setErrorMessage(data.Error);
+      }
+
       setMovie(data);
     } catch (error) {
-      console.error(movie.Error);
-      console.log(error);
+      const message = error.response.data.Error;
+      console.error(message);
+      setErrorMessage(message);
     } finally {
       setLoading(false);
     }
@@ -43,10 +51,16 @@ export default function MoviePage() {
           </svg>
         </button>
       </div>
-      {loading ? (
-        <DelayedRender delay={300}>
-          <MoviePageLoader />
-        </DelayedRender>
+      {loading || errorMessage ? (
+        errorMessage ? (
+          <h3 className="error-message">
+            Oops! We ran into a problem, please try again.
+          </h3>
+        ) : (
+          <DelayedRender delay={600}>
+            <MoviePageLoader />
+          </DelayedRender>
+        )
       ) : (
         <div className="container">
           <div className="row movie-page__row">

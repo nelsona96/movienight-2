@@ -1,12 +1,12 @@
-export default function FilterBar({ search }) {
+export default function FilterBar({ handleSortChange, currentSort }) {
   return (
     <div className="filter-bar">
-      {/* <h3 className="results">Results for: "{search}"</h3> */}
       <select
         name="sort-movies"
         id="sort-movies"
-        defaultValue="SORT_BY"
+        value={currentSort || "SORT_BY"}
         className="filter-bar__select"
+        onChange={(event) => handleSortChange(event.target.value)}
       >
         <option value="SORT_BY" disabled>
           Sort By

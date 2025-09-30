@@ -71,7 +71,7 @@ export default function SearchInput({
     };
   }, []);
 
-  function sendSearch() {
+  function handleSearch() {
     inputRef.current.blur();
     searchMovies();
 
@@ -90,7 +90,7 @@ export default function SearchInput({
         ref={inputRef}
         className={componentClass.input}
         onChange={(event) => handleInput(event.target.value)}
-        onKeyDown={(event) => event.key === "Enter" && sendSearch()}
+        onKeyDown={(event) => event.key === "Enter" && handleSearch()}
       />
 
       {loading ? (
@@ -98,7 +98,7 @@ export default function SearchInput({
       ) : (
         <div
           className={componentClass.searchIconWrapper}
-          onClick={() => sendSearch()}
+          onClick={() => handleSearch()}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

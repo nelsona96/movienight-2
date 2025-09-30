@@ -12,8 +12,8 @@ function App() {
   const [search, setSearch] = useState("");
   const [submittedSearch, setSubmittedSearch] = useState("");
   const [page, setPage] = useState(1);
-  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   let searchInputProps = {
     handleInput: handleInput,
@@ -29,34 +29,33 @@ function App() {
   }, [page]);
 
   async function fetchMovies(firstPage) {
-    // setLoading(true);
     try {
-      if (!error) {
-        const { data } = await axios.get(
-          `https://www.omdbapi.com/?apikey=6dbbb021&s=${search.trim()}&page=${
-            firstPage || page
-          }`
-        );
-        const seenIds = new Set();
+      const { data } = await axios.get(
+        `https://www.omdbapi.com/?apikey=6dbbb021&s=${search.trim()}&page=${
+          firstPage || page
+        }`
+      );
+      const seenIds = new Set();
 
-        const uniqueMovies = data?.Search?.filter((movie) => {
-          const isDuplicate = seenIds.has(movie.imdbID);
-          seenIds.add(movie.imdbID);
+      const uniqueMovies = data?.Search?.filter((movie) => {
+        const isDuplicate = seenIds.has(movie.imdbID);
+        seenIds.add(movie.imdbID);
 
-          return !isDuplicate;
-        });
+        return !isDuplicate;
+      });
 
-        if (page > 1) {
-          setMovies((prevMovies) => [
-            ...prevMovies,
-            ...uniqueMovies?.slice(0, 8),
-          ]);
-        } else {
-          setMovies(uniqueMovies?.slice(0, 8));
-        }
+      if (page > 1) {
+        setMovies((prevMovies) => [
+          ...prevMovies,
+          ...uniqueMovies?.slice(0, 8),
+        ]);
+      } else {
+        setMovies(uniqueMovies?.slice(0, 8));
       }
-    } catch {
-      console.error("ERROR");
+    } catch (error) {
+      const message = error.response.data.Error;
+      console.error(message);
+      setErrorMessage(message);
     } finally {
       setTimeout(() => {
         setLoading(false);
@@ -70,6 +69,7 @@ function App() {
 
   function searchMovies() {
     setLoading(true);
+    setErrorMessage("");
     setMovies([]);
     setPage(1);
     setSubmittedSearch(search);
@@ -106,6 +106,7 @@ function App() {
                 movies={movies}
                 page={page}
                 submittedSearch={submittedSearch}
+                errorMessage={errorMessage}
               />
             }
           />

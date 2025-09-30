@@ -211,11 +211,9 @@ nav {
 .nav__link {
   position: relative;
   display: flex;
-  /* align-items: center; */
   height: calc(var(--nav-height) - 18px);
   font-size: 18px;
   margin-top: 18px;
-  /* padding-top: 8px; */
   padding: 8px 16px 0;
 }
 
@@ -250,6 +248,19 @@ nav {
   background-color: var(--accent-primary);
   height: 2px;
   bottom: -1px;
+}
+
+.nav__icon {
+  transform: translateY(-8px);
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__icon--home {
+  width: 34px;
+  height: 34px;
 }
 
 /*
@@ -329,7 +340,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .search-icon__wrapper {
   display: flex;
   position: absolute;
-  top: 50%;
+  top: 45%;
   transform: translateY(-50%);
   right: 0;
   height: 40px;
@@ -393,6 +404,11 @@ SEARCH
   height: 32px;
 }
 
+.search-icon__wrapper--search-page,
+.search-icon__wrapper--nav {
+  top: 50%;
+}
+
 .search-icon--search-page,
 .search-icon--nav {
   width: 30px;
@@ -451,6 +467,20 @@ SEARCH
   color: var(--text-primary);
 }
 
+.search-message {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  font-size: 36px;
+  font-weight: 200;
+  text-align: center;
+  letter-spacing: 1px;
+  text-wrap: balance;
+  /* padding: 0 8px; */
+}
+
 .movies {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -492,7 +522,7 @@ SEARCH
 
 .movie-card__poster {
   display: flex;
-  background-color: #8b949e;
+  background-color: var(--text-secondary);
 }
 
 .movie-card__poster--skeleton {
@@ -606,10 +636,12 @@ MOVIE DETAILS
 .movie-poster__column,
 .movie-details__column {
   width: 50%;
+  transition: all 300ms ease;
 }
 
 .movie-poster__column {
   display: flex;
+  align-items: start;
   justify-content: center;
   padding: 0 16px;
   width: 50vh;
@@ -624,6 +656,7 @@ MOVIE DETAILS
   border-radius: 8px;
   outline: 1px solid rgba(0, 245, 255, 0.2);
   box-shadow: 0 0 16px rgba(0, 245, 255, 0.2);
+  background-color: var(--text-secondary);
 }
 
 .movie-details__title {
@@ -710,49 +743,19 @@ MOVIE DETAILS
   font-weight: 500;
 }
 
-/* HTML: <div class="loader"></div>
-.loader {
+.error-message {
   position: absolute;
-  top: 45%;
-  left: 48%;
-  width: 17px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--text-secondary);
-  display: grid;
-  animation: l22-0 2s infinite linear;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  font-size: 28px;
+  font-weight: 200;
+  text-align: center;
+  letter-spacing: 1px;
+  text-wrap: balance;
+  padding: 0 8px;
 }
-
-.loader:before,
-.loader:after {
-  content: "";
-  grid-area: 1/1;
-  margin: 15%;
-  border-radius: 50%;
-  transform: rotate(0deg) translate(150%);
-  animation: l22 1s infinite;
-}
-
-.loader:after {
-  animation-delay: -0.5s;
-  background-color: #d830ff;
-}
-
-.loader:before {
-  background-color: var(--accent-primary);
-}
-
-@keyframes l22-0 {
-  100% {
-    transform: rotate(1turn);
-  }
-}
-
-@keyframes l22 {
-  100% {
-    transform: rotate(1turn) translate(150%);
-  }
-} */
 
 /* 
 
@@ -782,6 +785,16 @@ MEDIA QUERIES
 
 */
 
+@media (max-width: 1000px) {
+  .movie-poster__column {
+    width: 40%;
+  }
+
+  .movie-details__column {
+    width: 60%;
+  }
+}
+
 @media (max-width: 768px) {
   .search-bar {
     display: flex;
@@ -792,6 +805,11 @@ MEDIA QUERIES
     align-items: center;
     max-width: 476px;
     padding: 0 8px;
+  }
+
+  .search-message {
+    top: 40%;
+    font-size: 28px;
   }
 
   .input__wrapper--nav {
@@ -821,6 +839,10 @@ MEDIA QUERIES
   #search,
   #movie-page {
     min-height: calc(100dvh - 166px);
+  }
+
+  .search-message {
+    font-size: 24px;
   }
 
   .minimal-footer {
