@@ -15,7 +15,6 @@ export default function FilterBar({ handleSortChange, currentSort }) {
         <option value="Z_TO_A">Z to A</option>
         <option value="NEWEST">Date, Newest</option>
         <option value="OLDEST">Date, Oldest</option>
-        <option value="RATING_HIGH">Rating</option>
       </select>
     </div>
   );
